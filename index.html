@@ -9,15 +9,50 @@
     <title>Austin Glenn Smith | Global Finance Leader & Consultant – Coming Soon</title>
     <meta name="description" content="Official website of Austin Glenn Smith, a globally experienced finance leader, portfolio manager, and consultant. Insights on finance, leadership, and long-term strategy. Website launching soon.">
 
-    <!-- OPEN GRAPH (OPTIONAL BUT RECOMMENDED) -->
+    <!-- OPEN GRAPH -->
     <meta property="og:title" content="Austin Glenn Smith | Global Finance Leader & Consultant">
     <meta property="og:description" content="A new digital presence for Austin Glenn Smith is coming soon. Thoughtful insights on finance, leadership, and long-term strategy.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://austinglennsmith.com">
 
-    <!-- GOOGLE FONT -->
+    <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
+    <!-- KNOWLEDGE PANEL / PERSON SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Austin Glenn Smith",
+      "url": "https://austinglennsmith.com",
+      "jobTitle": "Global Finance Leader, Portfolio Manager, Consultant",
+      "description": "Austin Glenn Smith is a globally experienced finance leader, senior portfolio manager, and consultant with decades of institutional investment experience across international markets.",
+      "birthDate": "1958-11-01",
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Oslo, Norway"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/",
+        "https://twitter.com/",
+        "https://medium.com/"
+      ]
+    }
+    </script>
+
     <style>
+        :root {
+            --bg-light: #ffffff;
+            --text-light: #1f2933;
+            --sub-light: #4b5563;
+            --border-light: #d1d5db;
+
+            --bg-dark: #0f172a;
+            --text-dark: #e5e7eb;
+            --sub-dark: #9ca3af;
+            --border-dark: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -26,16 +61,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1f2933;
+            background-color: var(--bg-light);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 720px;
             padding: 40px 20px;
             text-align: center;
         }
@@ -45,39 +81,37 @@
             font-size: 42px;
             font-weight: 600;
             margin-bottom: 10px;
-            letter-spacing: 0.5px;
         }
 
         .subtitle {
             font-size: 16px;
-            color: #4b5563;
+            color: var(--sub-light);
             margin-bottom: 30px;
         }
 
         .description {
             font-size: 17px;
             line-height: 1.7;
-            color: #374151;
             margin-bottom: 40px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 22px;
             margin-bottom: 40px;
         }
 
         .social-links a {
             text-decoration: none;
             font-size: 14px;
-            color: #1f2933;
+            color: inherit;
             border-bottom: 1px solid transparent;
-            transition: all 0.2s ease;
+            transition: border 0.2s ease;
         }
 
         .social-links a:hover {
-            border-bottom: 1px solid #1f2933;
+            border-bottom: 1px solid currentColor;
         }
 
         .notify {
@@ -87,38 +121,54 @@
         .notify input {
             padding: 12px 14px;
             width: 260px;
-            max-width: 100%;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--border-light);
             border-radius: 4px;
             font-size: 14px;
-            margin-right: 6px;
+            background: transparent;
+            color: inherit;
         }
 
         .notify button {
             padding: 12px 18px;
             font-size: 14px;
             border: none;
-            background-color: #1f2933;
-            color: #ffffff;
+            background-color: var(--text-light);
+            color: var(--bg-light);
             border-radius: 4px;
             cursor: pointer;
-        }
-
-        .notify button:hover {
-            opacity: 0.9;
+            margin-left: 6px;
         }
 
         footer {
             font-size: 13px;
-            color: #6b7280;
+            color: var(--sub-light);
+        }
+
+        /* DARK MODE */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--bg-dark);
+                color: var(--text-dark);
+            }
+
+            .subtitle,
+            footer {
+                color: var(--sub-dark);
+            }
+
+            .notify input {
+                border: 1px solid var(--border-dark);
+            }
+
+            .notify button {
+                background-color: var(--text-dark);
+                color: var(--bg-dark);
+            }
         }
 
         @media (max-width: 600px) {
             h1 {
                 font-size: 34px;
-            }
-            .description {
-                font-size: 16px;
             }
         }
     </style>
@@ -144,7 +194,7 @@
         </div>
 
         <div class="notify">
-            <input type="email" placeholder="Enter your email" aria-label="Email address">
+            <input type="email" placeholder="Enter your email">
             <button>Notify Me When We Launch</button>
         </div>
 

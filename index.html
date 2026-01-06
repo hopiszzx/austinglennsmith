@@ -18,7 +18,7 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- KNOWLEDGE PANEL / PERSON SCHEMA -->
+    <!-- PERSON SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -26,31 +26,32 @@
       "name": "Austin Glenn Smith",
       "url": "https://austinglennsmith.com",
       "jobTitle": "Global Finance Leader, Portfolio Manager, Consultant",
-      "description": "Austin Glenn Smith is a globally experienced finance leader, senior portfolio manager, and consultant with decades of institutional investment experience across international markets.",
+      "description": "Austin Glenn Smith is a globally experienced finance leader, senior portfolio manager, and consultant with decades of institutional investment experience.",
       "birthDate": "1958-11-01",
       "birthPlace": {
         "@type": "Place",
         "name": "Oslo, Norway"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/",
-        "https://twitter.com/",
-        "https://medium.com/"
-      ]
+      }
     }
     </script>
 
     <style>
         :root {
-            --bg-light: #ffffff;
-            --text-light: #1f2933;
-            --sub-light: #4b5563;
-            --border-light: #d1d5db;
+            --bg: #ffffff;
+            --text: #1f2933;
+            --sub: #4b5563;
+            --border: #d1d5db;
+            --button-bg: #1f2933;
+            --button-text: #ffffff;
+        }
 
-            --bg-dark: #0f172a;
-            --text-dark: #e5e7eb;
-            --sub-dark: #9ca3af;
-            --border-dark: #334155;
+        body.dark {
+            --bg: #0f172a;
+            --text: #e5e7eb;
+            --sub: #9ca3af;
+            --border: #334155;
+            --button-bg: #e5e7eb;
+            --button-text: #0f172a;
         }
 
         * {
@@ -61,12 +62,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--bg);
+            color: var(--text);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: background 0.3s ease, color 0.3s ease;
         }
 
@@ -74,18 +75,17 @@
             max-width: 720px;
             padding: 40px 20px;
             text-align: center;
+            position: relative;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 42px;
-            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .subtitle {
-            font-size: 16px;
-            color: var(--sub-light);
+            color: var(--sub);
             margin-bottom: 30px;
         }
 
@@ -104,10 +104,9 @@
 
         .social-links a {
             text-decoration: none;
-            font-size: 14px;
             color: inherit;
+            font-size: 14px;
             border-bottom: 1px solid transparent;
-            transition: border 0.2s ease;
         }
 
         .social-links a:hover {
@@ -119,21 +118,19 @@
         }
 
         .notify input {
-            padding: 12px 14px;
+            padding: 12px;
             width: 260px;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border);
             border-radius: 4px;
-            font-size: 14px;
             background: transparent;
             color: inherit;
         }
 
         .notify button {
             padding: 12px 18px;
-            font-size: 14px;
+            background: var(--button-bg);
+            color: var(--button-text);
             border: none;
-            background-color: var(--text-light);
-            color: var(--bg-light);
             border-radius: 4px;
             cursor: pointer;
             margin-left: 6px;
@@ -141,45 +138,35 @@
 
         footer {
             font-size: 13px;
-            color: var(--sub-light);
+            color: var(--sub);
         }
 
-        /* DARK MODE */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: var(--bg-dark);
-                color: var(--text-dark);
-            }
-
-            .subtitle,
-            footer {
-                color: var(--sub-dark);
-            }
-
-            .notify input {
-                border: 1px solid var(--border-dark);
-            }
-
-            .notify button {
-                background-color: var(--text-dark);
-                color: var(--bg-dark);
-            }
+        /* THEME TOGGLE */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text);
         }
 
         @media (max-width: 600px) {
-            h1 {
-                font-size: 34px;
-            }
+            h1 { font-size: 34px; }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+
         <h1>Austin Glenn Smith</h1>
-        <div class="subtitle">
-            Global Finance Leader · Portfolio Manager · Consultant
-        </div>
+        <div class="subtitle">Global Finance Leader · Portfolio Manager · Consultant</div>
 
         <div class="description">
             A new digital presence is being prepared.<br>
@@ -187,9 +174,9 @@
         </div>
 
         <div class="social-links">
-            <a href="#" target="_blank">LinkedIn</a>
-            <a href="#" target="_blank">X (Twitter)</a>
-            <a href="#" target="_blank">Medium</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">X (Twitter)</a>
+            <a href="#">Medium</a>
             <a href="mailto:info@austinglennsmith.com">Email</a>
         </div>
 
@@ -203,5 +190,30 @@
             Website launching soon.
         </footer>
     </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Load saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.classList.toggle('dark', savedTheme === 'dark');
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark');
+        }
+
+        updateToggleText();
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+            updateToggleText();
+        });
+
+        function updateToggleText() {
+            toggle.textContent = body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+        }
+    </script>
 </body>
 </html>
